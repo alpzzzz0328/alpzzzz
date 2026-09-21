@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>青竹湾生态度假区 - 一湾青竹，半山烟火</title>
+<meta name="description" content="青竹湾生态度假区位于南湖省中部山区，海拔720米，夏季均温23℃。竹林、溪流、梯田、菜园、农家菜、异蛇酒。南湖人自己的山野慢生活度假地。">
+<meta name="keywords" content="南湖避暑,山景木屋,农家菜园,血鸭,异蛇酒,自驾度假,青竹湾">
+<style>
+/* ========== CSS Reset & Base ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  color: #3b3b3b;
+  background: #f8f6f0;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+a { color: #5a7a4a; text-decoration: none; transition: color .3s; }
+a:hover { color: #3d5a30; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+
+/* ========== Navigation ========== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(255,255,255,.95); backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e8e4d8;
+  padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+  transition: box-shadow .3s;
+}
+.nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.08); }
+.nav-logo { font-size: 1.3rem; font-weight: 700; color: #3d5a30; letter-spacing: .05em; display: flex; align-items: center; gap: .5rem; }
+.nav-logo .icon { width: 32px; height: 32px; background: #5a7a4a; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1rem; }
+.nav-links { display: flex; gap: 1.8rem; }
+.nav-links a { font-size: .95rem; color: #666; padding: .3rem 0; border-bottom: 2px solid transparent; transition: all .3s; }
+.nav-links a:hover, .nav-links a.active { color: #3d5a30; border-bottom-color: #5a7a4a; }
+.nav-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #3d5a30; }
+
+/* ========== Hero / Banner ========== */
+.hero {
+  position: relative;
+  height: 100vh; min-height: 600px;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a2f1a 0%, #2d4a2d 30%, #3d5a30 60%, #5a7a4a 100%);
+}
+.hero-video {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: .5;
+}
+.hero-overlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.5));
+}
+.hero-content {
+  position: relative; z-index: 2;
+  color: #fff;
+  max-width: 800px;
+  padding: 2rem;
+}
+.hero-tag { font-size: .9rem; letter-spacing: .3em; text-transform: uppercase; margin-bottom: 1rem; opacity: .8; }
+.hero h1 {
+  font-size: 3.5rem; font-weight: 700; line-height: 1.3;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 20px rgba(0,0,0,.3);
+}
+.hero-subtitle { font-size: 1.2rem; opacity: .9; margin-bottom: 2.5rem; }
+.hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn {
+  display: inline-block; padding: .8rem 2rem;
+  border-radius: 50px; font-size: 1rem; font-weight: 600;
+  cursor: pointer; transition: all .3s;
+  border: none; text-decoration: none;
+}
+.btn-primary { background: #e8b84b; color: #3d2a0a; }
+.btn-primary:hover { background: #d4a43a; color: #3d2a0a; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(232,184,75,.4); }
+.btn-outline { background: transparent; color: #fff; border: 2px solid #fff; }
+.btn-outline:hover { background: rgba(255,255,255,.15); transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: #5a7a4a; border: 2px solid #5a7a4a; }
+.btn-ghost:hover { background: #5a7a4a; color: #fff; }
+
+/* ========== Sections ========== */
+.section { padding: 6rem 2rem; }
+.section-alt { background: #fff; }
+.section-dark { background: #2d3a24; color: #e8e4d8; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-title {
+  text-align: center; font-size: 2.2rem; font-weight: 700;
+  color: #3d5a30; margin-bottom: 1rem;
+}
+.section-dark .section-title { color: #c8d8b8; }
+.section-desc {
+  text-align: center; color: #888; max-width: 600px;
+  margin: 0 auto 3rem; font-size: 1.05rem;
+}
+
+/* ========== About ========== */
+.about-grid { display: flex; gap: 3rem; align-items: center; flex-wrap: wrap; }
+.about-text { flex: 1; min-width: 300px; }
+.about-text p { margin-bottom: 1rem; color: #666; font-size: 1.05rem; }
+.about-text .highlight {
+  background: #f0ebe0; padding: 1.2rem 1.5rem;
+  border-left: 4px solid #5a7a4a; margin: 1.5rem 0; font-style: italic; color: #555;
+}
+.about-text .warning {
+  color: #b8a88a; font-size: .85rem; margin-top: 1.5rem;
+  padding: .8rem 1rem; border: 1px dashed #d8d0c0; border-radius: 4px;
+  transition: all .6s;
+}
+.about-text .warning:hover { color: #8b0000; border-color: #8b0000; background: #fff5f5; }
+.about-img {
+  flex: 1; min-width: 300px;
+  background: #e0d8c8; border-radius: 12px;
+  height: 400px; display: flex; align-items: center; justify-content: center;
+  color: #b8a88a; font-size: .9rem;
+  position: relative; overflow: hidden;
+}
+.about-img .img-placeholder { text-align: center; }
+.about-img .img-placeholder .icon { font-size: 3rem; display: block; margin-bottom: .5rem; }
+
+/* ========== Stats ========== */
+.stats-row { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+.stat-item { text-align: center; padding: 1.5rem 2rem; }
+.stat-number { font-size: 2.5rem; font-weight: 700; color: #5a7a4a; }
+.stat-label { color: #999; font-size: .9rem; }
+
+/* ========== Rooms ========== */
+.rooms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.room-card {
+  background: #fff; border-radius: 12px; overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0,0,0,.06);
+  transition: transform .3s, box-shadow .3s;
+}
+.room-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,.12); }
+.room-img {
+  height: 220px; background: #e0d8c8;
+  display: flex; align-items: center; justify-content: center;
+  color: #b8a88a;
+}
+.room-body { padding: 1.5rem; }
+.room-body h3 { font-size: 1.2rem; color: #3d5a30; margin-bottom: .5rem; }
+.room-body p { color: #888; font-size: .9rem; line-height: 1.6; }
+.room-tags { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: 1rem; }
+.room-tag { background: #f0ebe0; color: #5a7a4a; padding: .3rem .8rem; border-radius: 20px; font-size: .8rem; }
+
+/* ========== Food ========== */
+.food-showcase { display: flex; gap: 3rem; align-items: center; flex-wrap: wrap; }
+.food-img {
+  flex: 1; min-width: 300px; height: 350px; background: #e0d8c8;
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  color: #b8a88a;
+}
+.food-info { flex: 1; min-width: 300px; }
+.food-info h3 { font-size: 1.6rem; color: #3d5a30; margin-bottom: 1rem; }
+.food-info p { color: #666; margin-bottom: .8rem; }
+.food-info .price { font-size: 1.4rem; color: #c0392b; font-weight: 700; }
+.food-list { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; margin-top: 1.5rem; }
+.food-list li { padding: .5rem .8rem; background: #f8f6f0; border-radius: 6px; color: #666; font-size: .9rem; }
+.food-list li::before { content: "🥢 "; }
+
+/* ========== Snake Wine ========== */
+.snake-wine {
+  display: flex; gap: 3rem; align-items: center; flex-wrap: wrap;
+  background: linear-gradient(135deg, #faf7f0, #f0e8d8);
+  border-radius: 16px; padding: 3rem;
+}
+.snake-wine-img {
+  flex: 1; min-width: 250px; height: 350px; background: #d8c8a8;
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  color: #a08060;
+}
+.snake-wine-text { flex: 1; min-width: 300px; }
+.snake-wine-text h3 { font-size: 1.6rem; color: #5a3a20; margin-bottom: 1rem; }
+.snake-wine-text p { color: #666; margin-bottom: .8rem; }
+.snake-wine-text .note { font-size: .85rem; color: #a08060; margin-top: 1rem; font-style: italic; }
+
+/* ========== Products ========== */
+.products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+.product-card { background: #fff; border-radius: 10px; padding: 1.5rem; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,.04); transition: transform .3s; }
+.product-card:hover { transform: translateY(-3px); }
+.product-icon { font-size: 2.5rem; margin-bottom: .8rem; }
+.product-card h4 { color: #3d5a30; margin-bottom: .3rem; }
+.product-card p { color: #999; font-size: .85rem; }
+
+/* ========== Reviews ========== */
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.review-card {
+  background: #fff; border-radius: 12px; padding: 1.8rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,.05);
+}
+.review-header { display: flex; align-items: center; gap: .8rem; margin-bottom: 1rem; }
+.review-avatar { width: 44px; height: 44px; background: #e0d8c8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+.review-name { font-weight: 600; color: #333; }
+.review-date { font-size: .8rem; color: #bbb; }
+.review-stars { color: #e8b84b; font-size: .9rem; }
+.review-text { color: #666; font-size: .95rem; line-height: 1.7; }
+
+/* Special creepy review */
+.review-card.creepy { position: relative; }
+.review-card.creepy .review-text { color: #777; }
+.review-card.creepy:hover { box-shadow: 0 4px 20px rgba(139,0,0,.1); }
+.review-card.creepy:hover .review-text { color: #6b2020; }
+
+/* ========== Contact ========== */
+.contact-grid { display: flex; gap: 3rem; flex-wrap: wrap; }
+.contact-info { flex: 1; min-width: 300px; }
+.contact-info h3 { font-size: 1.4rem; color: #3d5a30; margin-bottom: 1.5rem; }
+.contact-item { display: flex; gap: 1rem; margin-bottom: 1.2rem; align-items: flex-start; }
+.contact-item .label { font-weight: 600; color: #333; min-width: 60px; }
+.contact-item .value { color: #666; }
+.contact-map {
+  flex: 1; min-width: 300px; height: 300px; background: #e0d8c8;
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  color: #b8a88a;
+}
+
+/* ========== Footer ========== */
+.footer {
+  background: #2d3a24; color: #a0b090;
+  padding: 3rem 2rem; text-align: center;
+  font-size: .9rem;
+}
+.footer .brand { font-size: 1.2rem; font-weight: 700; color: #c8d8b8; margin-bottom: .5rem; }
+.footer p { margin-bottom: .3rem; }
+.footer .divider { width: 60px; height: 2px; background: #5a7a4a; margin: 1rem auto; }
+.footer-warning {
+  color: #7a8a6a; font-size: .8rem; margin-top: 1rem;
+  opacity: .7; transition: opacity .5s, color .5s;
+}
+.footer-warning:hover { opacity: 1; color: #c0392b; }
+
+/* ========== Glitch Effect (Hidden Horror) ========== */
+@keyframes glitch {
+  0%, 90%, 100% { transform: none; opacity: 1; }
+  92% { transform: translate(-2px, 1px); opacity: .8; }
+  94% { transform: translate(2px, -1px); opacity: .9; }
+  96% { transform: translate(-1px, -1px); }
+  98% { transform: translate(1px, 2px); opacity: .85; }
+}
+.glitch-trigger {
+  animation: glitch .15s ease-in-out;
+}
+
+/* ========== Hidden Link (Easter Egg) ========== */
+.hidden-link {
+  color: inherit; text-decoration: none; cursor: default;
+  transition: color .5s;
+}
+.hidden-link.revealed {
+  color: #8b0000; cursor: pointer; text-decoration: underline;
+  animation: pulse-text 2s infinite;
+}
+@keyframes pulse-text {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .5; }
+}
+
+/* ========== Modal ========== */
+.modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,.85); z-index: 9999;
+  display: none; align-items: center; justify-content: center;
+}
+.modal-overlay.active { display: flex; }
+.modal-content {
+  background: #1a1a1a; color: #ccc; padding: 2rem;
+  border-radius: 8px; max-width: 500px; text-align: center;
+  border: 1px solid #333;
+}
+.modal-content h3 { color: #8b0000; margin-bottom: 1rem; font-size: 1.4rem; }
+.modal-content p { color: #999; line-height: 1.8; margin-bottom: 1.5rem; }
+.modal-close { background: #333; color: #aaa; border: none; padding: .6rem 1.5rem; border-radius: 4px; cursor: pointer; }
+
+/* ========== Music Toggle ========== */
+.music-toggle {
+  position: fixed; bottom: 24px; right: 24px; z-index: 999;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,255,255,.9); border: 1px solid #e0d8c8;
+  font-size: 1.2rem; cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,.1);
+  transition: all .3s;
+  display: flex; align-items: center; justify-content: center;
+}
+.music-toggle:hover { background: #f0ebe0; transform: scale(1.1); }
+.music-toggle.muted { opacity: .5; }
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2rem; }
+  .hero-subtitle { font-size: 1rem; }
+  .section { padding: 3rem 1rem; }
+  .section-title { font-size: 1.6rem; }
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: #fff; padding: 1rem 2rem; border-bottom: 1px solid #e8e4d8; }
+  .nav-toggle { display: block; }
+  .about-grid, .food-showcase, .snake-wine, .contact-grid { flex-direction: column; }
+  .snake-wine { padding: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== NAVIGATION ==================== -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">
+    <span class="icon">🎋</span>
+    青竹湾生态度假区
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+  <div class="nav-links" id="navLinks">
+    <a href="#home" class="active">首页</a>
+    <a href="#about">关于我们</a>
+    <a href="#rooms">住宿环境</a>
+    <a href="#food">美食体验</a>
+    <a href="#products">山货特产</a>
+    <a href="#reviews">游客评价</a>
+    <a href="#contact">联系我们</a>
+  </div>
+</nav>
+
+<!-- ==================== HERO / BANNER ==================== -->
+<section class="hero" id="home">
+  <!-- 视频背景：如果有宣传视频，src 替换为视频路径 -->
+  <video class="hero-video" id="heroVideo" autoplay loop muted playsinline poster="assets/hero-banner.png">
+    <source src="assets/promo.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-tag">🌿 南湖 · 湘中山区 · 海拔720米</p>
+    <h1>藏进湘中深山里，<br>过几天有蝉鸣、菜园和柴火饭的日子。</h1>
+    <p class="hero-subtitle">青竹湾生态度假区 ｜ 一湾青竹，半山烟火</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-primary">立即预订</a>
+      <a href="#rooms" class="btn btn-outline">查看房型</a>
+      <a href="#contact" class="btn btn-outline">联系我们</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ABOUT ==================== -->
+<section class="section" id="about">
+  <div class="container">
+    <h2 class="section-title">从高速下来四十分钟，手机信号变两格，你就到了。</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>青竹湾位于湘中雪峰山余脉，海拔720米，森林覆盖率92%。这里没有五星级酒店，只有几十栋散落在竹林和溪边的木屋。</p>
+        <p>菜是自己种的，鸡鸭自己养，酒是山里老方子泡的。</p>
+        <p>春天挖笋，夏夜看星，秋天晒辣椒，冬天围着炭火烤红薯。</p>
+        <p>我们不赶时间，只想等你回来吃口热饭。</p>
+        <div class="highlight">🌡️ 夏季均温 23℃ ｜ 🌲 森林覆盖率 92% ｜ 🏔️ 海拔 720m</div>
+        <p class="warning" id="dollWarning">
+          ⚠️ 本度假区不提供任何玩偶赠品纪念。如房间内发现玩偶，请勿触碰，立即联系前台。
+        </p>
+      </div>
+      <div class="about-img">
+        <img src="assets/about-bamboo.png" alt="青竹湾竹海云雾航拍" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ROOMS ==================== -->
+<section class="section section-alt" id="rooms">
+  <div class="container">
+    <h2 class="section-title">住进山里，睡在风里。</h2>
+    <p class="section-desc">原木家具，落地玻璃，推门见山。清晨被鸟叫醒，夜里能听见溪水声。</p>
+    <div class="rooms-grid">
+      <div class="room-card">
+        <div class="room-img"><img src="assets/room-wooden.png" alt="山景木屋" style="width:100%;height:100%;object-fit:cover;" loading="lazy"></div>
+        <div class="room-body">
+          <h3>山景木屋</h3>
+          <p>原木家具，落地玻璃，推门见山。清晨被鸟叫醒，夜里能听见溪水声。</p>
+          <div class="room-tags">
+            <span class="room-tag">👤 适合2人</span>
+            <span class="room-tag">🍳 含双早</span>
+          </div>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-img"><img src="assets/room-villa.png" alt="溪边别墅" style="width:100%;height:100%;object-fit:cover;" loading="lazy"></div>
+        <div class="room-body">
+          <h3>溪边别墅</h3>
+          <p>独栋小楼，带露台和躺椅。楼下就是浅溪，夏天可以踩水、冰西瓜。</p>
+          <div class="room-tags">
+            <span class="room-tag">👥 适合4-6人</span>
+            <span class="room-tag">🍳 含早餐</span>
+          </div>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-img"><img src="assets/room-courtyard.png" alt="农家小院" style="width:100%;height:100%;object-fit:cover;" loading="lazy"></div>
+        <div class="room-body">
+          <h3>农家小院</h3>
+          <p>老式青瓦土墙房改造，带独立菜园和土灶。可自己摘菜做饭，最适合家庭或朋友小聚。</p>
+          <div class="room-tags">
+            <span class="room-tag">👨‍👩‍👧 家庭小聚</span>
+            <span class="room-tag">🔥 独立土灶</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOD ==================== -->
+<section class="section" id="food">
+  <div class="container">
+    <h2 class="section-title">从菜园到餐桌，只有五十米。</h2>
+    <p class="section-desc">度假区有自己的高山菜园，辣椒、茄子、黄瓜、番茄、豆角、南瓜，每个季节都有不同收成。</p>
+
+    <!-- 血鸭 -->
+    <div class="food-showcase" style="margin-bottom:3rem;">
+      <div class="food-img"><img src="assets/food-blood-duck.png" alt="青竹湾血鸭" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" loading="lazy"></div>
+      <div class="food-info">
+        <h3>🔥 青竹湾血鸭</h3>
+        <p>选用山里放养麻鸭，现杀现炒。鸭血直接淋入热锅中，瞬间裹满鸭肉，配上本地青椒、仔姜和山茶油，柴火大灶爆炒。</p>
+        <p>鸭肉紧实，酱汁浓郁，一口下去辣得过瘾，又带着烟熏香气。</p>
+        <p class="price">💰 每天限量，建议提前预订</p>
+      </div>
+    </div>
+
+    <!-- 体验项目 -->
+    <h3 style="text-align:center;color:#3d5a30;margin-bottom:1.5rem;">🌾 山野体验项目</h3>
+    <div class="rooms-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+      <div class="product-card"><div class="product-icon">🧺</div><h4>蔬菜采摘</h4><p>提竹篮下地摘菜</p></div>
+      <div class="product-card"><div class="product-icon">🎋</div><h4>挖笋</h4><p>春季限定体验</p></div>
+      <div class="product-card"><div class="product-icon">🍡</div><h4>打糍粑</h4><p>传统石臼手工</p></div>
+      <div class="product-card"><div class="product-icon">🫘</div><h4>磨豆腐</h4><p>石磨手工豆浆</p></div>
+      <div class="product-card"><div class="product-icon">🌶️</div><h4>手作辣椒酱</h4><p>带一瓶山里的味道回家</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SNAKE WINE ==================== -->
+<section class="section section-alt" id="products">
+  <div class="container">
+    <h2 class="section-title">古法异蛇酒，山里的男人都知道。</h2>
+    <p class="section-desc">湘中地区自古有泡制异蛇酒的传统。青竹湾的老方子，选用本地异蛇，配以当归、枸杞、杜仲等十余味中草药，山泉酒浸泡三年以上。</p>
+
+    <div class="snake-wine">
+      <div class="snake-wine-img"><img src="assets/snake-wine.png" alt="青竹湾老方异蛇酒" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" loading="lazy"></div>
+      <div class="snake-wine-text">
+        <h3>🐍 老方子异蛇酒</h3>
+        <p>酒色琥珀，入口醇厚，回味悠长。适合日常小酌，也常被本地人用来招待远客。</p>
+        <p>散装、瓶装、礼盒装均有。请适量饮用，酒后请勿驾车。</p>
+        <p class="note">⚠️ 购买提示：请询问清楚年份批次。不同批次的配方可能略有差异。</p>
+      </div>
+    </div>
+
+    <!-- 其他特产 -->
+    <h3 style="text-align:center;color:#3d5a30;margin:3rem 0 1.5rem;">🎁 更多山货特产</h3>
+    <div class="products-grid">
+      <div class="product-card"><div class="product-icon">🫒</div><h4>高山茶油</h4><p>古法压榨</p></div>
+      <div class="product-card"><div class="product-icon">🎍</div><h4>干笋</h4><p>春季嫩笋晒制</p></div>
+      <div class="product-card"><div class="product-icon">🥓</div><h4>农家腊肉</h4><p>土猪柴火熏制</p></div>
+      <div class="product-card"><div class="product-icon">🌶️</div><h4>剁椒酱</h4><p>手工制作</p></div>
+      <div class="product-card"><div class="product-icon">🍠</div><h4>红薯粉</h4><p>纯手工制作</p></div>
+      <div class="product-card"><div class="product-icon">🍯</div><h4>土蜂蜜</h4><p>山里百花蜜</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== REVIEWS ==================== -->
+<section class="section" id="reviews">
+  <div class="container">
+    <h2 class="section-title">游客怎么说</h2>
+    <p class="section-desc">来自真实游客的评价</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">🧑</div>
+          <div>
+            <div class="review-name">沙洲张哥</div>
+            <div class="review-date">2024-07-16</div>
+          </div>
+          <div class="review-stars" style="margin-left:auto;">⭐⭐⭐⭐⭐</div>
+        </div>
+        <p class="review-text">沙洲41度，山上晚上还要盖被子。老板娘人实在，血鸭真的一绝，我一个人吃了三碗饭。异蛇酒泡了好几年，喝起来不冲，但后劲足。适合带爸妈来住两天。</p>
+      </div>
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">👩</div>
+          <div>
+            <div class="review-name">桃桃妈妈</div>
+            <div class="review-date">2024-07-22</div>
+          </div>
+          <div class="review-stars" style="margin-left:auto;">⭐⭐⭐⭐⭐</div>
+        </div>
+        <p class="review-text">孩子很喜欢菜园，早上自己摘番茄，鞋子全是泥，高兴得不行。木屋很干净，窗外就是竹林，晚上有萤火虫。唯一遗憾是没看到云海，下次再来。</p>
+      </div>
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">👨</div>
+          <div>
+            <div class="review-name">老李自驾游</div>
+            <div class="review-date">2024-08-03</div>
+          </div>
+          <div class="review-stars" style="margin-left:auto;">⭐⭐⭐⭐✨</div>
+        </div>
+        <p class="review-text">山路有点绕，但跟着导航能到。地方不大，胜在清净。菜都是自己种的，血鸭很正宗，和永州做法不一样，但也好吃。买了三瓶异蛇酒，老板说泡了五年，回家孝敬岳父。</p>
+      </div>
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">🧑‍💼</div>
+          <div>
+            <div class="review-name">不吃香菜的小王</div>
+            <div class="review-date">2024-08-10</div>
+          </div>
+          <div class="review-stars" style="margin-left:auto;">⭐⭐⭐⭐⭐</div>
+        </div>
+        <p class="review-text">公司团建选在这里。晚上在院子里吃饭，山里风特别舒服。厨师炒的血鸭，端上来三分钟被抢光。房间没有电视，但睡得特别好。第二天还去竹林里走了两小时，像进了另一个世界。</p>
+      </div>
+      <!-- 暗藏恐怖的评价 -->
+      <div class="review-card creepy" id="creepyReview">
+        <div class="review-header">
+          <div class="review-avatar">🌙</div>
+          <div>
+            <div class="review-name">夜宿青竹湾</div>
+            <div class="review-date">2024-09-02</div>
+          </div>
+          <div class="review-stars" style="margin-left:auto;">⭐⭐⭐</div>
+        </div>
+        <p class="review-text">
+          环境确实不错，菜也好吃。就是晚上在溪边散步，看见竹林里好像有个小孩那么大的泰迪熊坐在篱笆上。回房间问服务员，服务员说我们这里从来没有泰迪熊。可能是我看错了。<br><br>
+          不过那晚睡得特别沉，第二天早上发现带来的一件旧外套不见了。<br><br>
+          <span style="color:#b8a88a;font-style:italic;">也许在山里，总要留点东西下来。</span>
+        </p>
+      </div>
+      <div class="review-card" style="opacity:.7;">
+        <div class="review-header">
+          <div class="review-avatar">🤐</div>
+          <div>
+            <div class="review-name">***（该用户已注销）</div>
+            <div class="review-date">2024-09-15</div>
+          </div>
+          <div class="review-stars" style="margin-left:auto;">⭐</div>
+        </div>
+        <p class="review-text" style="color:#aaa;">
+          不要带玩偶回来。不要带玩偶回来。不要带玩偶回来。不要带玩偶回来。不要带玩偶回来。不要带玩偶回来。<br><br>
+          <span style="font-size:.8rem;color:#ccc;">此评价已被管理员标记为"不实信息"</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section class="section section-alt" id="contact">
+  <div class="container">
+    <h2 class="section-title">联系我们</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>📞 预订与咨询</h3>
+        <div class="contact-item">
+          <span class="label">电话</span>
+          <span class="value">0738-XXXXXXX</span>
+        </div>
+        <div class="contact-item">
+          <span class="label">地址</span>
+          <span class="value">南湖省XX市XX县青竹湾村</span>
+        </div>
+        <div class="contact-item">
+          <span class="label">公众号</span>
+          <span class="value">青竹湾生态度假区</span>
+        </div>
+        <div class="contact-item">
+          <span class="label">自驾</span>
+          <span class="value">从沙洲出发约2.5小时，高速出口"XX"下，导航搜"青竹湾生态度假区"。山路弯多，请减速慢行。</span>
+        </div>
+        <div class="contact-item" style="color:#8b0000;">
+          <span class="label" style="color:#8b0000;">⚠️ 注意</span>
+          <span class="value" style="color:#8b0000;">夜间21:00后谢绝进入后山竹林。</span>
+        </div>
+      </div>
+      <div class="contact-map"><img src="assets/contact-map.png" alt="青竹湾位置地图" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+  <div class="brand">🎋 青竹湾生态度假区</div>
+  <p>一湾青竹，半山烟火</p>
+  <div class="divider"></div>
+  <p>南湖省XX市XX县青竹湾村 ｜ 0738-XXXXXXX</p>
+  <p>© 2024 青竹湾生态度假区 版权所有</p>
+  <p class="footer-warning" id="footerWarning">
+    ⚠️ 本度假区不提供任何玩偶赠品纪念。如房间内发现玩偶，请勿触碰，立即联系前台。<br>
+    夜间21:00后谢绝进入后山竹林。
+  </p>
+</footer>
+
+<!-- ==================== MUSIC TOGGLE ==================== -->
+<button class="music-toggle" id="musicToggle" title="音乐开关" aria-label="音乐开关">🎵</button>
+
+<!-- ==================== HIDDEN MODAL (恐怖弹窗) ==================== -->
+<div class="modal-overlay" id="horrorModal">
+  <div class="modal-content">
+    <h3>⚠️ 系统提示</h3>
+    <p id="horrorModalText">你确定要查看这条信息吗？</p>
+    <button class="modal-close" id="modalClose">关闭</button>
+  </div>
+</div>
+
+<!-- ==================== SCRIPTS ==================== -->
+<script>
+// ===== Navigation scroll effect =====
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+// ===== Mobile nav toggle =====
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => navLinks.classList.remove('open'));
+});
+
+// ===== Active nav link =====
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    if (window.scrollY >= section.offsetTop - 100) {
+      current = section.getAttribute('id');
+    }
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+
+// ===== Web Audio API: 中国风山水氛围音乐 =====
+let audioCtx = null;
+let ambientMusicPlaying = false;
+const heroVideo = document.getElementById('heroVideo');
+
+function initAudioContext() {
+  try {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+  } catch(e) {
+    console.warn('🔇 AudioContext 不可用（file:// 协议限制），音乐功能已禁用。用 http:// 访问即可正常。');
+    audioCtx = null;
+  }
+}
+
+function startAmbientMusic() {
+  if (ambientMusicPlaying) return;
+  initAudioContext();
+  ambientMusicPlaying = true;
+  
+  const now = audioCtx.currentTime;
+  const masterGain = audioCtx.createGain();
+  masterGain.gain.setValueAtTime(0, now);
+  masterGain.gain.linearRampToValueAtTime(0.12, now + 1.5);
+  masterGain.connect(audioCtx.destination);
+  
+  // Pentatonic scale frequencies (D4-based): 宫商角徵羽
+  const pentatonic = [293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.25, 783.99, 880.00];
+  
+  // Create a lush pad with multiple oscillators
+  pentatonic.forEach((freq, i) => {
+    const oscGain = audioCtx.createGain();
+    oscGain.gain.setValueAtTime(0, now);
+    // Each note fades in at a different time
+    oscGain.gain.linearRampToValueAtTime(0.03 / (i + 1), now + i * 0.5 + 1);
+    oscGain.connect(masterGain);
+    
+    // Main oscillator
+    const osc = audioCtx.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(freq, now);
+    // Gentle vibrato
+    const vibrato = audioCtx.createOscillator();
+    vibrato.frequency.setValueAtTime(0.15 + Math.random() * 0.3, now);
+    const vibratoGain = audioCtx.createGain();
+    vibratoGain.gain.setValueAtTime(1.5, now);
+    vibrato.connect(vibratoGain);
+    vibratoGain.connect(osc.frequency);
+    vibrato.start(now);
+    
+    osc.connect(oscGain);
+    osc.start(now + i * 0.3);
+    // Stagger stops
+    osc.stop(now + 40 + i);
+    vibrato.stop(now + 40 + i);
+  });
+  
+  // Add subtle harmonic overtones (fifth above each root)
+  const harmonics = [440.00, 523.25, 587.33, 659.25, 783.99, 880.00, 987.77];
+  harmonics.forEach((freq, i) => {
+    const oscGain = audioCtx.createGain();
+    oscGain.gain.setValueAtTime(0, now);
+    oscGain.gain.linearRampToValueAtTime(0.015 / (i + 1), now + i * 0.7 + 2);
+    oscGain.connect(masterGain);
+    
+    const osc = audioCtx.createOscillator();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(freq, now);
+    const vibrato = audioCtx.createOscillator();
+    vibrato.frequency.setValueAtTime(0.1 + Math.random() * 0.2, now);
+    const vibratoGain = audioCtx.createGain();
+    vibratoGain.gain.setValueAtTime(2, now);
+    vibrato.connect(vibratoGain);
+    vibratoGain.connect(osc.frequency);
+    vibrato.start(now);
+    
+    osc.connect(oscGain);
+    osc.start(now + i * 0.4 + 1);
+    osc.stop(now + 40 + i);
+    vibrato.stop(now + 40 + i);
+  });
+  
+  // Wind / stream noise (filtered noise)
+  const bufferSize = 2 * audioCtx.sampleRate;
+  const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+  const output = noiseBuffer.getChannelData(0);
+  for (let i = 0; i < bufferSize; i++) {
+    output[i] = Math.random() * 2 - 1;
+  }
+  const noise = audioCtx.createBufferSource();
+  noise.buffer = noiseBuffer;
+  noise.loop = true;
+  const noiseFilter = audioCtx.createBiquadFilter();
+  noiseFilter.type = 'lowpass';
+  noiseFilter.frequency.setValueAtTime(400, now);
+  noiseFilter.frequency.linearRampToValueAtTime(600, now + 10);
+  noiseFilter.Q.setValueAtTime(0.5, now);
+  const noiseGain = audioCtx.createGain();
+  noiseGain.gain.setValueAtTime(0, now);
+  noiseGain.gain.linearRampToValueAtTime(0.02, now + 2);
+  noise.connect(noiseFilter);
+  noiseFilter.connect(noiseGain);
+  noiseGain.connect(masterGain);
+  noise.start(now);
+  noise.stop(now + 45);
+  
+  // Store for later use
+  window._ambientMasterGain = masterGain;
+  window._ambientActive = true;
+}
+
+function stopAmbientMusic() {
+  if (window._ambientMasterGain) {
+    const now = audioCtx.currentTime;
+    window._ambientMasterGain.gain.linearRampToValueAtTime(0, now + 1);
+    setTimeout(() => {
+      ambientMusicPlaying = false;
+      window._ambientActive = false;
+    }, 1500);
+  }
+}
+
+// Sync music with video
+if (heroVideo) {
+  heroVideo.addEventListener('play', () => {
+    startAmbientMusic();
+  });
+  heroVideo.addEventListener('pause', () => {});
+  heroVideo.addEventListener('ended', () => {});
+}
+
+// Also start music on first user interaction (for browsers that block autoplay audio)
+let audioInitialized = false;
+document.addEventListener('click', () => {
+  if (!audioInitialized) {
+    initAudioContext();
+    if (heroVideo && !heroVideo.paused && !ambientMusicPlaying) {
+      startAmbientMusic();
+    }
+    audioInitialized = true;
+  }
+}, { once: false });
+
+// ===== Music toggle button =====
+const musicToggle = document.getElementById('musicToggle');
+let musicMuted = false;
+musicToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (musicMuted) {
+    // Unmute
+    musicToggle.textContent = '🎵';
+    musicToggle.classList.remove('muted');
+    if (window._ambientMasterGain && audioCtx) {
+      window._ambientMasterGain.gain.linearRampToValueAtTime(0.12, audioCtx.currentTime + 0.5);
+    } else if (!ambientMusicPlaying) {
+      startAmbientMusic();
+    }
+    musicMuted = false;
+  } else {
+    // Mute
+    musicToggle.textContent = '🔇';
+    musicToggle.classList.add('muted');
+    if (window._ambientMasterGain && audioCtx) {
+      window._ambientMasterGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.5);
+    }
+    musicMuted = true;
+  }
+});
+
+// ===== Hidden horror triggers =====
+console.log('🎃 恐怖彩蛋系统已加载。试试：点3次玩偶警告、点2次诡异评价、点3次异蛇酒图片、键盘输入 doll/snake/bamboo');
+
+// 1. Click counter on the doll warning
+const dollWarning = document.getElementById('dollWarning');
+let dollClickCount = 0;
+if (dollWarning) {
+  dollWarning.addEventListener('click', () => {
+    dollClickCount++;
+    console.log('🪆 玩偶警告点击次数:', dollClickCount);
+    if (dollClickCount === 3) {
+      showHorrorModal(
+        '你注意到了这条提示。',
+        '大多数游客不会留意到这里。但你不一样——你已经看到了不该看的东西。\n\n请记住：如果房间里出现玩偶，不要看它的眼睛。'
+      );
+    } else if (dollClickCount === 7) {
+      showHorrorModal(
+        '你还在点。',
+        '这说明你已经察觉到什么了。\n\n去后山竹林看看吧——如果你敢的话。\n\n不过，夜间21:00之后，别去。'
+      );
+      const fw = document.getElementById('footerWarning');
+      if (fw) { fw.style.color = '#c0392b'; fw.style.opacity = '1'; }
+    }
+  });
+} else { console.warn('⚠️ 找不到 #dollWarning 元素'); }
+
+// 2. Creepy review click
+const creepyReview = document.getElementById('creepyReview');
+let creepyClickCount = 0;
+if (creepyReview) {
+  creepyReview.addEventListener('click', function(e) {
+    creepyClickCount++;
+    console.log('👁️ 诡异评价点击次数:', creepyClickCount);
+    if (creepyClickCount === 2) {
+      document.body.classList.add('glitch-trigger');
+      setTimeout(() => document.body.classList.remove('glitch-trigger'), 200);
+      const warnings = document.querySelectorAll('.warning, .footer-warning');
+      warnings.forEach(w => {
+        w.style.color = '#8b0000';
+        w.style.fontWeight = 'bold';
+        setTimeout(() => { w.style.color = ''; w.style.fontWeight = ''; }, 1500);
+      });
+    }
+  });
+} else { console.warn('⚠️ 找不到 #creepyReview 元素'); }
+
+// 3. Snake wine section - hidden click area
+const snakeWineSection = document.querySelector('.snake-wine');
+let snakeWineClicks = 0;
+if (snakeWineSection) {
+  snakeWineSection.addEventListener('click', function(e) {
+    if (e.target.closest('.snake-wine-img')) {
+      snakeWineClicks++;
+      console.log('🐍 异蛇酒点击次数:', snakeWineClicks);
+      if (snakeWineClicks === 3) {
+        showHorrorModal(
+        '你凝视着酒坛。',
+        '琥珀色的液体里，有什么东西动了一下。\n\n蛇是死的。你知道蛇是死的。\n\n但有时候，在特定的年份批次里——它们会抬头。'
+      );
+    }
+  }
+  });
+} else { console.warn('⚠️ 找不到 .snake-wine 元素'); }
+
+// 4. Time-based subtle changes (checks every 30 seconds)
+let timeOnPage = 0;
+setInterval(() => {
+  timeOnPage += 30;
+  if (timeOnPage >= 180) { // After 3 minutes
+    // Subtle: the page title changes briefly
+    const origTitle = document.title;
+    document.title = '青...竹...湾...';
+    setTimeout(() => { document.title = origTitle; }, 2000);
+    
+    // Reset counter to avoid spamming
+    timeOnPage = -9999;
+  }
+}, 30000);
+
+// 5. Konami code / secret key sequence for testers
+let keySequence = '';
+document.addEventListener('keydown', (e) => {
+  keySequence += e.key.toLowerCase();
+  if (keySequence.length > 20) keySequence = keySequence.slice(-10);
+  
+  // Type "doll" to trigger
+  if (keySequence.endsWith('doll')) {
+    showHorrorModal(
+      '🪆 你找到了隐藏线索',
+      '青竹湾从不提供玩偶赠品。那些出现在房间里的玩偶来自哪里？\n\n有人说，它们是上一批客人留下的。\n有人说，它们是山里自己长出来的。\n\n还有人——什么都没说。\n\n因为他们已经不在了。'
+    );
+  }
+  
+  // Type "snake" 
+  if (keySequence.endsWith('snake')) {
+    showHorrorModal(
+      '🐍 异蛇酒的秘密',
+      '老方子说：异蛇活着浸入酒里，封坛三年。\n三年后开坛，蛇有时会突然抬头咬人。\n被咬的人不会死。\n但会慢慢变成……\n\n变成什么，老方子从来没写完。'
+    );
+  }
+  
+  // Type "bamboo"
+  if (keySequence.endsWith('bamboo')) {
+    document.body.classList.add('glitch-trigger');
+    setTimeout(() => document.body.classList.remove('glitch-trigger'), 300);
+    
+    // Change all placeholder images to show "something"
+    const placeholders = document.querySelectorAll('.about-img, .room-img, .food-img, .snake-wine-img, .contact-map');
+    const origTexts = [];
+    placeholders.forEach(p => {
+      origTexts.push(p.innerHTML);
+      p.innerHTML = '<span style="color:#8b0000;">🪆<br>它一直在看着你</span>';
+      p.style.background = '#1a0000';
+      setTimeout(() => {
+        const idx = Array.from(placeholders).indexOf(p);
+        p.innerHTML = origTexts[idx];
+        p.style.background = '';
+      }, 4000);
+    });
+  }
+});
+
+// ===== Modal functions =====
+const horrorModal = document.getElementById('horrorModal');
+const horrorModalText = document.getElementById('horrorModalText');
+const modalClose = document.getElementById('modalClose');
+
+function showHorrorModal(title, text) {
+  if (!horrorModal || !horrorModalText) { console.warn('⚠️ Modal 元素缺失'); return; }
+  const h3 = horrorModal.querySelector('h3');
+  if (h3) h3.textContent = title;
+  horrorModalText.textContent = text;
+  horrorModal.classList.add('active');
+}
+
+if (modalClose) {
+  modalClose.addEventListener('click', () => {
+    horrorModal.classList.remove('active');
+  });
+}
+if (horrorModal) {
+  horrorModal.addEventListener('click', (e) => {
+    if (e.target === horrorModal) horrorModal.classList.remove('active');
+  });
+}
+
+// ===== Save visit to localStorage (for game integration) =====
+const visitData = {
+  visited: true,
+  visitCount: (parseInt(localStorage.getItem('qzw_visits') || '0')) + 1,
+  lastVisit: new Date().toISOString(),
+  dollClicks: 0,
+  secretsFound: []
+};
+localStorage.setItem('qzw_visits', visitData.visitCount);
+localStorage.setItem('qzw_lastVisit', visitData.lastVisit);
+localStorage.setItem('qzw_resort', JSON.stringify(visitData));
+
+// ===== Detect if accessed from game (URL param) =====
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('from') === 'game') {
+  // Accessed from within the game - unlock special content
+  document.body.style.transition = 'filter 3s';
+  setTimeout(() => {
+    // Subtle: the page feels slightly off
+    document.querySelectorAll('.about-img, .room-img, .food-img').forEach(img => {
+      img.style.filter = 'sepia(10%) saturate(80%)';
+    });
+  }, 10000);
+}
+
+console.log('🌿 青竹湾生态度假区 - 欢迎来到山里。');
+console.log('⚠️ 提示：如果你在寻找什么，试试在键盘上输入一些关键词。');
+console.log('🪆 或者，多点几次那些看起来不太对劲的地方。');
+</script>
+
+</body>
+</html>
