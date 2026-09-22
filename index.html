@@ -311,8 +311,15 @@ ul { list-style: none; }
   .nav { padding: 0 1rem; height: 56px; }
   .nav-logo { font-size: 1.05rem; }
   .nav-logo .icon { width: 28px; height: 28px; font-size: .85rem; }
-  .nav-links.open { top: 56px; padding: .8rem 1.2rem; }
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex; flex-direction: column; position: absolute;
+    top: 56px; left: 0; right: 0; background: #fff;
+    padding: .8rem 1.2rem; border-bottom: 1px solid #e8e4d8;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  }
   .nav-links.open a { padding: .6rem 0; font-size: 1rem; }
+  .nav-toggle { display: block; }
 
   /* Hero 首屏 */
   .hero { height: auto; min-height: 480px; padding: 5rem 1.2rem 4rem; }
