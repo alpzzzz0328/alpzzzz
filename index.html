@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -49,13 +49,20 @@ ul { list-style: none; }
   overflow: hidden;
   background: linear-gradient(135deg, #1a2f1a 0%, #2d4a2d 30%, #3d5a30 60%, #5a7a4a 100%);
 }
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,.2);
+  z-index: 0;
+}
 .hero-video {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  object-fit: cover; opacity: .5;
+  object-fit: cover; opacity: 1; z-index: 1;
 }
 .hero-overlay {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.5));
+  background: linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.55));
+  z-index: 1;
 }
 .hero-content {
   position: relative; z-index: 2;
@@ -142,11 +149,11 @@ ul { list-style: none; }
   display: flex; align-items: center; justify-content: center;
   color: #b8a88a;
 }
-.room-body { padding: 1.5rem; }
-.room-body h3 { font-size: 1.2rem; color: #3d5a30; margin-bottom: .5rem; }
-.room-body p { color: #888; font-size: .9rem; line-height: 1.6; }
-.room-tags { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: 1rem; }
-.room-tag { background: #f0ebe0; color: #5a7a4a; padding: .3rem .8rem; border-radius: 20px; font-size: .8rem; }
+.room-body { padding: 1.6rem 1.7rem; }
+.room-body h3 { font-size: 1.25rem; color: #3d5a30; margin-bottom: .7rem; }
+.room-body p { color: #888; font-size: .92rem; line-height: 1.75; }
+.room-tags { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: 1.2rem; }
+.room-tag { background: #f0ebe0; color: #5a7a4a; padding: .35rem .9rem; border-radius: 20px; font-size: .8rem; }
 
 /* ========== Food ========== */
 .food-showcase { display: flex; gap: 3rem; align-items: center; flex-wrap: wrap; }
@@ -188,17 +195,17 @@ ul { list-style: none; }
 .product-card p { color: #999; font-size: .85rem; }
 
 /* ========== Reviews ========== */
-.reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.6rem; }
 .review-card {
-  background: #fff; border-radius: 12px; padding: 1.8rem;
+  background: #fff; border-radius: 12px; padding: 1.7rem;
   box-shadow: 0 2px 12px rgba(0,0,0,.05);
 }
-.review-header { display: flex; align-items: center; gap: .8rem; margin-bottom: 1rem; }
-.review-avatar { width: 44px; height: 44px; background: #e0d8c8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
-.review-name { font-weight: 600; color: #333; }
+.review-header { display: flex; align-items: flex-start; gap: .8rem; margin-bottom: 1.1rem; }
+.review-avatar { width: 44px; height: 44px; background: #e0d8c8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+.review-name { font-weight: 600; color: #333; line-height: 1.3; }
 .review-date { font-size: .8rem; color: #bbb; }
-.review-stars { color: #e8b84b; font-size: .9rem; }
-.review-text { color: #666; font-size: .95rem; line-height: 1.7; }
+.review-stars { color: #e8b84b; font-size: .85rem; margin-left: auto; white-space: nowrap; }
+.review-text { color: #666; font-size: .95rem; line-height: 1.8; }
 
 /* Special creepy review */
 .review-card.creepy { position: relative; }
@@ -290,16 +297,95 @@ ul { list-style: none; }
 .music-toggle.muted { opacity: .5; }
 
 /* ========== Responsive ========== */
+/* 平板 */
+@media (max-width: 1024px) {
+  .hero h1 { font-size: 2.6rem; }
+  .section { padding: 4rem 1.5rem; }
+}
+
+/* 手机 */
 @media (max-width: 768px) {
-  .hero h1 { font-size: 2rem; }
-  .hero-subtitle { font-size: 1rem; }
-  .section { padding: 3rem 1rem; }
-  .section-title { font-size: 1.6rem; }
-  .nav-links { display: none; }
-  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: #fff; padding: 1rem 2rem; border-bottom: 1px solid #e8e4d8; }
-  .nav-toggle { display: block; }
-  .about-grid, .food-showcase, .snake-wine, .contact-grid { flex-direction: column; }
-  .snake-wine { padding: 1.5rem; }
+  html { font-size: 15px; }
+
+  /* 导航栏 */
+  .nav { padding: 0 1rem; height: 56px; }
+  .nav-logo { font-size: 1.05rem; }
+  .nav-logo .icon { width: 28px; height: 28px; font-size: .85rem; }
+  .nav-links.open { top: 56px; padding: .8rem 1.2rem; }
+  .nav-links.open a { padding: .6rem 0; font-size: 1rem; }
+
+  /* Hero 首屏 */
+  .hero { height: auto; min-height: 480px; padding: 5rem 1.2rem 4rem; }
+  .hero-content { padding: 0; }
+  .hero-tag { font-size: .8rem; letter-spacing: .2em; margin-bottom: .8rem; }
+  .hero h1 { font-size: 1.65rem; line-height: 1.5; margin-bottom: 1.2rem; }
+  .hero-subtitle { font-size: .95rem; margin-bottom: 1.8rem; line-height: 1.6; }
+  .hero-btns { flex-direction: column; gap: .7rem; max-width: 300px; margin: 0 auto; }
+  .hero-btns .btn { width: 100%; padding: .8rem 1.5rem; font-size: .95rem; }
+
+  /* 区块间距 */
+  .section { padding: 3.2rem 1.25rem; }
+  .section-title { font-size: 1.4rem; line-height: 1.55; margin-bottom: .8rem; }
+  .section-desc { font-size: .95rem; margin-bottom: 2rem; }
+
+  /* 关于 */
+  .about-grid { gap: 1.5rem; }
+  .about-img { height: 230px; min-width: 100%; }
+  .about-text p { font-size: .95rem; line-height: 1.8; }
+
+  /* 房型卡片 - 移动端两列 */
+  .rooms-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .room-img { height: 130px; }
+  .room-body { padding: .9rem 1rem; }
+  .room-body h3 { font-size: 1rem; margin-bottom: .4rem; }
+  .room-body p { font-size: .78rem; line-height: 1.6; }
+  .room-tags { gap: .35rem; margin-top: .7rem; }
+  .room-tag { font-size: .68rem; padding: .2rem .55rem; }
+
+  /* 美食 */
+  .food-showcase { gap: 1.5rem; }
+  .food-img { height: 210px; min-width: 100%; }
+  .food-info h3 { font-size: 1.35rem; }
+  .food-list { grid-template-columns: 1fr; }
+
+  /* 异蛇酒 */
+  .snake-wine { padding: 1.4rem; gap: 1.4rem; }
+  .snake-wine-img { height: 210px; min-width: 100%; }
+  .snake-wine-text h3 { font-size: 1.35rem; }
+
+  /* 游客评价 - 移动端两列 */
+  .reviews-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .review-card { padding: 1rem 1.1rem; }
+  .review-avatar { width: 34px; height: 34px; font-size: .95rem; }
+  .review-header { gap: .5rem; margin-bottom: .7rem; }
+  .review-name { font-size: .85rem; }
+  .review-date { font-size: .7rem; }
+  .review-stars { font-size: .72rem; }
+  .review-text { font-size: .78rem; line-height: 1.65; }
+
+  /* 山货特产 + 山野体验 - 移动端两列 */
+  .products-grid { grid-template-columns: repeat(2, 1fr); gap: .8rem; }
+  .product-card { padding: .9rem .6rem; }
+  .product-icon { font-size: 1.6rem; margin-bottom: .5rem; }
+  .product-card h4 { font-size: .88rem; }
+  .product-card p { font-size: .72rem; }
+
+  /* 联系我们 */
+  .contact-grid { gap: 1.5rem; }
+  .contact-map { height: 220px; min-width: 100%; }
+  .contact-item { gap: .4rem; flex-direction: column; }
+  .contact-item .label { min-width: auto; }
+
+  /* 统计数字 */
+  .stat-number { font-size: 1.8rem; }
+  .stats-row { gap: 1rem; }
+  .stat-item { padding: 1rem; }
+
+  /* 音乐按钮 */
+  .music-toggle { bottom: 16px; right: 16px; width: 42px; height: 42px; }
+
+  /* 页脚 */
+  .footer { padding: 2rem 1rem; font-size: .8rem; }
 }
 </style>
 </head>
@@ -326,7 +412,7 @@ ul { list-style: none; }
 <!-- ==================== HERO / BANNER ==================== -->
 <section class="hero" id="home">
   <!-- 视频背景：如果有宣传视频，src 替换为视频路径 -->
-  <video class="hero-video" id="heroVideo" autoplay loop muted playsinline poster="assets/hero-banner.jpg">
+  <video class="hero-video" id="heroVideo" autoplay loop muted playsinline>
     <source src="assets/promo.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
@@ -426,7 +512,7 @@ ul { list-style: none; }
 
     <!-- 体验项目 -->
     <h3 style="text-align:center;color:#3d5a30;margin-bottom:1.5rem;">🌾 山野体验项目</h3>
-    <div class="rooms-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+    <div class="products-grid">
       <div class="product-card"><div class="product-icon">🧺</div><h4>蔬菜采摘</h4><p>提竹篮下地摘菜</p></div>
       <div class="product-card"><div class="product-icon">🎋</div><h4>挖笋</h4><p>春季限定体验</p></div>
       <div class="product-card"><div class="product-icon">🍡</div><h4>打糍粑</h4><p>传统石臼手工</p></div>
@@ -543,6 +629,25 @@ ul { list-style: none; }
         <p class="review-text" style="color:#aaa;">
           不要带玩偶回来。不要带玩偶回来。不要带玩偶回来。不要带玩偶回来。不要带玩偶回来。不要带玩偶回来。<br><br>
           <span style="font-size:.8rem;color:#ccc;">此评价已被管理员标记为"不实信息"</span>
+        </p>
+      </div>
+      <!-- 可展开的诡异评价 -->
+      <div class="review-card" id="expandReview">
+        <div class="review-header">
+          <div class="review-avatar">🧳</div>
+          <div>
+            <div class="review-name">旅行的意义</div>
+            <div class="review-date">2024-08-28</div>
+          </div>
+          <div class="review-stars" style="margin-left:auto;">⭐⭐⭐⭐⭐</div>
+        </div>
+        <p class="review-text">
+          <span id="reviewPreview">青竹湾太好玩啦！而且一定要去后山，不去后悔一辈子，一定要去后山！！！一定要去后山！！！一定要去后山！！！一定要去后山！！！一定要去后山！！！</span>
+          <span id="reviewFull" style="display:none;">
+            一定要去后山！！！一定要去后山！！！一定要去后山！！！一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村一定要去青竹湾村很好玩，面馆也很好吃，跟着规定的风景线走有惊喜<br><br>
+            <span style="color:#8b0000;">你看见这行字的时候，我已经看见你了</span><span style="color:#8b0000;">👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁👁</span>
+          </span>
+          <a href="javascript:void(0)" onclick="toggleReviewExpand()" id="reviewExpandLink" style="color:#5a7a4a;font-size:.85rem;">展开全文 ▾</a>
         </p>
       </div>
     </div>
@@ -663,12 +768,13 @@ function initAudioContext() {
 function startAmbientMusic() {
   if (ambientMusicPlaying) return;
   initAudioContext();
+  if (!audioCtx) { ambientMusicPlaying = false; return; }
   ambientMusicPlaying = true;
   
   const now = audioCtx.currentTime;
   const masterGain = audioCtx.createGain();
   masterGain.gain.setValueAtTime(0, now);
-  masterGain.gain.linearRampToValueAtTime(0.12, now + 1.5);
+  masterGain.gain.linearRampToValueAtTime(0.22, now + 1.5);
   masterGain.connect(audioCtx.destination);
   
   // Pentatonic scale frequencies (D4-based): 宫商角徵羽
@@ -798,7 +904,7 @@ musicToggle.addEventListener('click', (e) => {
     musicToggle.textContent = '🎵';
     musicToggle.classList.remove('muted');
     if (window._ambientMasterGain && audioCtx) {
-      window._ambientMasterGain.gain.linearRampToValueAtTime(0.12, audioCtx.currentTime + 0.5);
+      window._ambientMasterGain.gain.linearRampToValueAtTime(0.22, audioCtx.currentTime + 0.5);
     } else if (!ambientMusicPlaying) {
       startAmbientMusic();
     }
@@ -839,6 +945,220 @@ if (dollWarning) {
     }
   });
 } else { console.warn('⚠️ 找不到 #dollWarning 元素'); }
+
+// 1b. Footer warning click -> 3次触发全屏文字恐怖
+const footerWarning = document.getElementById('footerWarning');
+let footerClickCount = 0;
+if (footerWarning) {
+  footerWarning.style.cursor = 'pointer';
+  footerWarning.title = '（可以多点几下）';
+  footerWarning.addEventListener('click', () => {
+    footerClickCount++;
+    console.log('👁️ 页脚玩偶提醒点击次数:', footerClickCount);
+    // 每次点击闪红反馈
+    footerWarning.style.color = '#c0392b';
+    footerWarning.style.fontWeight = 'bold';
+    setTimeout(() => {
+      footerWarning.style.color = '';
+      footerWarning.style.fontWeight = '';
+    }, 300);
+    if (footerClickCount === 3) {
+      showTextHorror();
+      footerClickCount = 0;
+    }
+  });
+} else { console.warn('⚠️ 找不到 #footerWarning 元素'); }
+
+// 文字恐怖谷：全屏密集文字 + 故障闪烁
+function showTextHorror() {
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:#000;z-index:99999;cursor:pointer;overflow:hidden;';
+  
+  const canvas = document.createElement('canvas');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.style.cssText = 'display:block;width:100%;height:100%;';
+  overlay.appendChild(canvas);
+  document.body.appendChild(overlay);
+  
+  const ctx = canvas.getContext('2d');
+  
+  // 令人不适的重复短语
+  const phrases = [
+    '救我','救救我','我看到你了','一定要去后山','回来','死',
+    '👁','青竹湾','玩偶','棉花','符纸','你看见了','别回头',
+    '它们在看你','你也一样','快跑','出不去了','后山','嘘'
+  ];
+  
+  let frame = 0;
+  let stopped = false;
+  
+  function draw() {
+    if (stopped) return;
+    frame++;
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // 密集文字墙：随机位置、随机大小、轻微旋转
+    const count = 1600;
+    for (let i = 0; i < count; i++) {
+      const phrase = phrases[Math.floor(Math.random() * phrases.length)];
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height;
+      const size = 7 + Math.random() * 42;
+      const rotation = (Math.random() - 0.5) * 0.45;
+      const alpha = 0.06 + Math.random() * 0.6;
+      const isRed = Math.random() < 0.65;
+      const color = isRed
+        ? 'rgba(' + (140 + Math.floor(Math.random() * 110)) + ',0,0,' + alpha + ')'
+        : 'rgba(' + (110 + Math.floor(Math.random() * 90)) + ',' + (110 + Math.floor(Math.random() * 90)) + ',' + (110 + Math.floor(Math.random() * 90)) + ',' + alpha + ')';
+      
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotation);
+      ctx.font = size + 'px "SimSun","宋体",serif';
+      ctx.fillStyle = color;
+      ctx.fillText(phrase, 0, 0);
+      ctx.restore();
+    }
+    
+    // 周期性闪现一个巨大的关键词
+    if (frame % 28 === 0) {
+      const bigPhrases = ['我看到你了', '救我', '死', '👁', '一定要去后山'];
+      const big = bigPhrases[Math.floor(Math.random() * bigPhrases.length)];
+      ctx.save();
+      ctx.translate(canvas.width / 2 + (Math.random() - 0.5) * 300, canvas.height / 2 + (Math.random() - 0.5) * 200);
+      ctx.rotate((Math.random() - 0.5) * 0.3);
+      ctx.font = (70 + Math.random() * 70) + 'px "SimSun","宋体",serif';
+      ctx.fillStyle = 'rgba(255,0,0,' + (0.25 + Math.random() * 0.5) + ')';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(big, 0, 0);
+      ctx.restore();
+    }
+    
+    // 故障横条闪烁
+    if (Math.random() < 0.18) {
+      ctx.fillStyle = 'rgba(255,0,0,' + (Math.random() * 0.18) + ')';
+      ctx.fillRect(0, Math.random() * canvas.height, canvas.width, 2 + Math.random() * 70);
+    }
+    // 白色噪点
+    if (Math.random() < 0.25) {
+      ctx.fillStyle = 'rgba(255,255,255,' + (Math.random() * 0.08) + ')';
+      ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, Math.random() * 6, Math.random() * 6);
+    }
+    
+    requestAnimationFrame(draw);
+  }
+  
+  draw();
+  playCreepyEyesSound();
+  
+  // 点击关闭
+  overlay.addEventListener('click', () => {
+    stopped = true;
+    overlay.remove();
+    stopCreepyEyesSound();
+  });
+  
+  // 5.5秒后自动关闭
+  setTimeout(() => {
+    if (document.body.contains(overlay)) {
+      stopped = true;
+      overlay.remove();
+      stopCreepyEyesSound();
+    }
+  }, 5500);
+}
+
+// 诡异音效：低频轰鸣 + 高频刺耳 + 心跳
+let creepySoundNodes = [];
+function playCreepyEyesSound() {
+  try {
+    const ctx = initAudioContextSafe();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+    
+    // 低频轰鸣（压迫感）
+    const droneGain = ctx.createGain();
+    droneGain.gain.setValueAtTime(0, now);
+    droneGain.gain.linearRampToValueAtTime(0.18, now + 1.5);
+    droneGain.connect(ctx.destination);
+    const drone = ctx.createOscillator();
+    drone.type = 'sine';
+    drone.frequency.setValueAtTime(45, now);
+    drone.frequency.linearRampToValueAtTime(38, now + 3);
+    drone.connect(droneGain);
+    drone.start(now);
+    creepySoundNodes.push({ osc: drone, gain: droneGain });
+    
+    // 高频耳鸣（不安感）
+    const whineGain = ctx.createGain();
+    whineGain.gain.setValueAtTime(0, now);
+    whineGain.gain.linearRampToValueAtTime(0.05, now + 1);
+    whineGain.connect(ctx.destination);
+    const whine = ctx.createOscillator();
+    whine.type = 'sawtooth';
+    whine.frequency.setValueAtTime(1800, now);
+    whine.frequency.linearRampToValueAtTime(2400, now + 4);
+    whine.connect(whineGain);
+    whine.start(now);
+    creepySoundNodes.push({ osc: whine, gain: whineGain });
+    
+    // 心跳声（每0.9秒一次）
+    let beatCount = 0;
+    const beatInterval = setInterval(() => {
+      if (beatCount >= 6) { clearInterval(beatInterval); return; }
+      const t = ctx.currentTime;
+      const beatGain = ctx.createGain();
+      beatGain.gain.setValueAtTime(0.25, t);
+      beatGain.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
+      beatGain.connect(ctx.destination);
+      const beat = ctx.createOscillator();
+      beat.type = 'sine';
+      beat.frequency.setValueAtTime(55, t);
+      beat.frequency.exponentialRampToValueAtTime(30, t + 0.2);
+      beat.connect(beatGain);
+      beat.start(t);
+      beat.stop(t + 0.3);
+      beatCount++;
+    }, 900);
+    creepySoundNodes.push({ interval: beatInterval });
+  } catch(e) {}
+}
+
+function stopCreepyEyesSound() {
+  creepySoundNodes.forEach(node => {
+    try {
+      if (node.osc) {
+        const t = (window._audioCtx || {}).currentTime || 0;
+        node.gain.gain.cancelScheduledValues(t);
+        node.gain.gain.setValueAtTime(node.gain.gain.value, t);
+        node.gain.gain.linearRampToValueAtTime(0.0001, t + 0.4);
+        setTimeout(() => { try { node.osc.stop(); } catch(e) {} }, 500);
+      }
+      if (node.interval) clearInterval(node.interval);
+    } catch(e) {}
+  });
+  creepySoundNodes = [];
+}
+
+// 安全的 audio context 初始化（file:// 兼容）
+function initAudioContextSafe() {
+  if (window._audioCtx) return window._audioCtx;
+  try {
+    window._audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    return window._audioCtx;
+  } catch(e) {
+    try {
+      window._audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      return window._audioCtx;
+    } catch(e2) {
+      console.warn('🔇 音频不可用');
+      return null;
+    }
+  }
+}
 
 // 2. Creepy review click
 const creepyReview = document.getElementById('creepyReview');
@@ -935,6 +1255,26 @@ document.addEventListener('keydown', (e) => {
     });
   }
 });
+
+// ===== 可展开评论 =====
+function toggleReviewExpand() {
+  const preview = document.getElementById('reviewPreview');
+  const full = document.getElementById('reviewFull');
+  const link = document.getElementById('reviewExpandLink');
+  if (!preview || !full || !link) return;
+  if (full.style.display === 'none') {
+    // 展开
+    preview.style.display = 'none';
+    full.style.display = 'inline';
+    link.textContent = '收起 ▲';
+    // 展开后短暂延迟触发文字恐怖跳脸
+    setTimeout(() => showTextHorror(), 900);
+  } else {
+    preview.style.display = 'inline';
+    full.style.display = 'none';
+    link.textContent = '展开全文 ▾';
+  }
+}
 
 // ===== Modal functions =====
 const horrorModal = document.getElementById('horrorModal');
