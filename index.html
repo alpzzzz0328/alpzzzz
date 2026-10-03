@@ -1078,6 +1078,162 @@ function showTextHorror() {
   }, 5500);
 }
 
+// ===== 滚动到房型板块触发一次性强制跳脸（1秒，无法点击/滑动关闭） =====
+let scrollScareTriggered = false;
+window.addEventListener('scroll', () => {
+  if (scrollScareTriggered) return;
+  const roomsSection = document.getElementById('rooms');
+  if (!roomsSection) return;
+  const rect = roomsSection.getBoundingClientRect();
+  // 房型板块顶部进入视口上半部时触发
+  if (rect.top < window.innerHeight * 0.5) {
+    scrollScareTriggered = true;
+    showScrollScare();
+  }
+});
+
+function showScrollScare() {
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:#000;z-index:100000;overflow:hidden;pointer-events:none;';
+  
+  const canvas = document.createElement('canvas');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.style.cssText = 'display:block;width:100%;height:100%;';
+  overlay.appendChild(canvas);
+  document.body.appendChild(overlay);
+  
+  // 小窗口内先触发，再通知桌面全屏覆盖
+  setTimeout(function() {
+    try {
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'qzw-jumpscare' }, '*');
+      }
+    } catch(e) {}
+  }, 600);
+  
+  const ctx = canvas.getContext('2d');
+  const phrases = [
+    '救我','救救我','我看到你了','一定要去后山','回来','死','👁',
+    '青竹湾','玩偶','棉花','符纸','你看见了','别回头','它们来了','嘘','快跑'
+  ];
+  
+  const startTime = Date.now();
+  const DURATION = 1000; // 强制 1 秒
+  
+  function draw() {
+    const elapsed = Date.now() - startTime;
+    if (elapsed >= DURATION) {
+      overlay.remove();
+      return;
+    }
+    
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // 密集文字墙（更密更乱）
+    for (let i = 0; i < 2200; i++) {
+      const phrase = phrases[Math.floor(Math.random() * phrases.length)];
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height;
+      const size = 8 + Math.random() * 52;
+      const rotation = (Math.random() - 0.5) * 0.55;
+      const alpha = 0.1 + Math.random() * 0.7;
+      const isRed = Math.random() < 0.7;
+      const color = isRed
+        ? 'rgba(' + (150 + Math.floor(Math.random() * 100)) + ',0,0,' + alpha + ')'
+        : 'rgba(' + (120 + Math.floor(Math.random() * 100)) + ',' + (120 + Math.floor(Math.random() * 100)) + ',' + (120 + Math.floor(Math.random() * 100)) + ',' + alpha + ')';
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotation);
+      ctx.font = size + 'px "SimSun","宋体",serif';
+      ctx.fillStyle = color;
+      ctx.fillText(phrase, 0, 0);
+      ctx.restore();
+    }
+    
+    // 巨大关键词频繁闪现
+    if (Math.random() < 0.35) {
+      const big = ['我看到你了', '死', '👁', '救我', '一定要去后山'][Math.floor(Math.random() * 5)];
+      ctx.save();
+      ctx.translate(canvas.width / 2 + (Math.random() - 0.5) * 400, canvas.height / 2 + (Math.random() - 0.5) * 300);
+      ctx.rotate((Math.random() - 0.5) * 0.4);
+      ctx.font = (80 + Math.random() * 90) + 'px "SimSun","宋体",serif';
+      ctx.fillStyle = 'rgba(255,0,0,' + (0.35 + Math.random() * 0.55) + ')';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(big, 0, 0);
+      ctx.restore();
+    }
+    
+    // 故障横条 + 噪点
+    if (Math.random() < 0.3) {
+      ctx.fillStyle = 'rgba(255,0,0,' + (Math.random() * 0.28) + ')';
+      ctx.fillRect(0, Math.random() * canvas.height, canvas.width, 3 + Math.random() * 90);
+    }
+    if (Math.random() < 0.3) {
+      ctx.fillStyle = 'rgba(255,255,255,' + (Math.random() * 0.1) + ')';
+      ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, Math.random() * 8, Math.random() * 8);
+    }
+    
+    requestAnimationFrame(draw);
+  }
+  
+  draw();
+  playLoudScare();
+}
+
+// 响亮的惊吓音效（1.5秒爆发）
+function playLoudScare() {
+  try {
+    const ctx = initAudioContextSafe();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+    
+    // 尖锐刺耳
+    const gain = ctx.createGain();
+    gain.connect(ctx.destination);
+    gain.gain.setValueAtTime(0.5, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 1.0);
+    const osc = ctx.createOscillator();
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(1100, now);
+    osc.frequency.exponentialRampToValueAtTime(90, now + 1.0);
+    osc.connect(gain);
+    osc.start(now);
+    osc.stop(now + 1.0);
+    
+    // 低频轰鸣
+    const gain2 = ctx.createGain();
+    gain2.connect(ctx.destination);
+    gain2.gain.setValueAtTime(0.45, now);
+    gain2.gain.exponentialRampToValueAtTime(0.001, now + 1.0);
+    const osc2 = ctx.createOscillator();
+    osc2.type = 'sine';
+    osc2.frequency.setValueAtTime(48, now);
+    osc2.frequency.exponentialRampToValueAtTime(22, now + 1.0);
+    osc2.connect(gain2);
+    osc2.start(now);
+    osc2.stop(now + 1.0);
+    
+    // 噪音爆发
+    const bufferSize = Math.floor(ctx.sampleRate * 1.0);
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.12));
+    }
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+    const noiseGain = ctx.createGain();
+    noiseGain.gain.setValueAtTime(0.32, now);
+    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 1.0);
+    noise.connect(noiseGain);
+    noiseGain.connect(ctx.destination);
+    noise.start(now);
+  } catch(e) {}
+}
+
 // 诡异音效：低频轰鸣 + 高频刺耳 + 心跳
 let creepySoundNodes = [];
 function playCreepyEyesSound() {
